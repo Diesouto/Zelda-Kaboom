@@ -1,12 +1,18 @@
-// initialize kaboom context
+//#region Initialize kaboom context
 kaboom({
     global: true,
     fullscreen: true,
     scale: 1,
     debug: true,
 });
+//#endregion
+
+//#region Speeds
+const MOVE_SPEED = 120;
+//#endregion
 
 // Game Logic
+//#region Load Sprites
 loadRoot('./assets/')
 loadSprite('link-going-left', '1Xq9biB.png')
 loadSprite('link-going-right', 'yZIb8O2.png')
@@ -29,10 +35,12 @@ loadSprite('skeletor', 'Ei1VnX8.png')
 loadSprite('kaboom', 'o9WizfI.png')
 loadSprite('stairs', 'VghkL08.png')
 loadSprite('bg', 'u4DVsx6.png')
+//#endregion
 
 scene("game", ({ level, score }) => {
     layers(['bg', 'obj', 'ui'], 'obj');
 
+    //Level
     const map = [
         'ycc)cc^ccw',
         'a        b',
@@ -45,6 +53,7 @@ scene("game", ({ level, score }) => {
         'xdd)dd)ddz',
     ];
 
+    // Sprite definitions
     const levelConfig = {
         width: 48, 
         height: 48, 
@@ -57,8 +66,8 @@ scene("game", ({ level, score }) => {
         y: [sprite('top-left-wall'), solid(), 'wall'],
         z: [sprite('bottom-right-wall'), solid(), 'wall'],
         '%': [sprite('left-door'), solid(), 'wall'],
-        '^': [sprite('top-door')],
-        '$': [sprite('stairs')],
+        '^': [sprite('top-door'), 'next-level'],
+        '$': [sprite('stairs'), 'next-level'],
         '*': [sprite('slicer')],
         '}': [sprite('skeletor')],
         ')': [sprite('lanterns'), solid(), 'wall'],
@@ -68,7 +77,8 @@ scene("game", ({ level, score }) => {
 
     // add([sprite('bg'), layer('bg')])
 
-    add([
+    //#region Score UI
+    const scoreLabel = add([
         text('0'),
         pos(400, 450),
         layer('ui'),
@@ -77,12 +87,64 @@ scene("game", ({ level, score }) => {
         },
         scale(2),
     ]);
+    //#endregion
 
-    add([
+    //#region Level UI
+    const levelLabel =add([
         text('level ' + parseInt(level + 1)), 
         pos(400, 485),
         scale(2),
-    ])
+    ]);
+    //#endregion
+
+    //#region Player
+    const player = add([
+        sprite('link-going-right'),
+        pos(5, 190),
+        {
+            //right by default
+            dir: vec2(1,0),
+        }
+    ]);
+
+    player.action(() => {
+        player.resolve();
+    });
+
+    player.overlaps('next-level', () => {
+        go("game", {
+            level: (level + 1),
+            score: scoreLabel.value,
+        })
+    });
+
+    //#endregion
+
+    //#region Controls
+    keyDown('left', () => {
+        player.changeSprite('link-going-left')
+        player.move(-MOVE_SPEED, 0);
+        player.dir = vec2(-1,0);
+    });
+
+    keyDown('right', () => {
+        player.changeSprite('link-going-right')
+        player.move(MOVE_SPEED, 0);
+        player.dir = vec2(1,0);
+    });
+
+    keyDown('up', () => {
+        player.changeSprite('link-going-up')
+        player.move(0, -MOVE_SPEED);
+        player.dir = vec2(0,-1);
+    });
+
+    keyDown('down', () => {
+        player.changeSprite('link-going-down')
+        player.move(0, MOVE_SPEED);
+        player.dir = vec2(0,1);
+    });
+    //#endregion
 });
 
 start("game", { level: 0, score: 0 });
