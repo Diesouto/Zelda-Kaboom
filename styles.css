@@ -1,0 +1,5 @@
+/* just to get rid of the white border and scrolling */
+body {
+    margin: 0;
+    overflow: hidden;
+}
