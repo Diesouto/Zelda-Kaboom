@@ -126,9 +126,9 @@ import gameOverScene from './components/scenes/gameOver.js';
 
   })
   
-  scene('lose', gameOverScene)
+  scene('lose', gameOverScene);
   
-  start('menu')
+  start('menu');
 
 // Functions
 function updateHealth(player) {

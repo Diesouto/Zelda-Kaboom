@@ -1,13 +1,16 @@
 export default function menuPrincipalScene() {
     add([
-        text("Diego's Portfolio \nAdventure"),
-        pos(240, 80),
-        scale(3),
+        text("Diego's Portfolio\nAdventure"),
+        origin('center'), 
+        pos(width() / 2, (height() / 2) - 150),
+        scale(5),
     ]);
 
     add([
-        rect(160, 20),
-        pos(240, 180),
+        rect(140, 20),
+        origin('center'), 
+        pos(width() / 2, (height() / 2)),
+        scale(3),
         "button",
         {
             clickAction: () => go('game', { level: 0, score: 0 }),
@@ -16,13 +19,17 @@ export default function menuPrincipalScene() {
 
     add([
         text("Play game"),
-        pos(240, 180),
+        origin('center'), 
+        pos(width() / 2, (height() / 2)),
+        scale(3),
         color(0, 0, 0)
     ]);
 
     add([
-        rect(160, 20),
-        pos(240, 210),
+        rect(140, 20),
+        origin('center'), 
+        pos(width() / 2, (height() / 2) + 100),
+        scale(3),
         "button",
         {
             clickAction: () => window.open('https://www.linkedin.com/in/diesouto/', '_blank'),
@@ -31,7 +38,9 @@ export default function menuPrincipalScene() {
 
     add([
         text("My LinkedIn"),
-        pos(240, 210),
+        origin('center'), 
+        pos(width() / 2, (height() / 2) + 100),
+        scale(3),
         color(0, 0, 0)
     ]);
 
