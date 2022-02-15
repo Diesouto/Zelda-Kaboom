@@ -166,7 +166,7 @@ function loadControls(player, sword, dialog) {
     })
 
     // if device is phone add mobile controls
-    if (window.matchMedia("(max-width: 700px)").matches) {
+    if (window.matchMedia("(max-width: 900px)").matches) {
         addButton("upCtrl", vec2(17, height() - 12), () => movePlayerY(player, -SPEED))
         addButton("rightCtrl", vec2(23, height() - 6), () => movePlayerX(false, SPEED, -4, player, sword))
         addButton("downCtrl", vec2(16.3, height()), () => movePlayerY(player, SPEED))
