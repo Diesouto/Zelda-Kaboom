@@ -15,6 +15,7 @@ export default function createPlayer(spriteName) {
 }
 
 function setControls(player) {
+    // Move left
     keyDown('left', () => {
         moveLeft(player);
     })
@@ -23,6 +24,7 @@ function setControls(player) {
         moveLeft(player);
     })
 
+    // Move right
     keyDown('right', () => {
         moveRight(player);
     })
@@ -31,6 +33,7 @@ function setControls(player) {
         moveRight(player);
     })
 
+    // Move up
     keyDown('up', () => {
         moveUp(player);
     })
@@ -39,6 +42,7 @@ function setControls(player) {
         moveUp(player);
     })
 
+    // Move down
     keyDown('down', () => {
         moveDown(player);
     })
@@ -47,6 +51,7 @@ function setControls(player) {
         moveDown(player);
     })
 
+    // Attack
     keyPress('space', () => {
         attack(player.pos.add(player.dir.scale(48)))
     })
