@@ -1,5 +1,6 @@
 /* just to get rid of the white border and scrolling */
-body {
+html, body {
+    width: 100%;
     margin: 0;
     overflow: hidden;
 }

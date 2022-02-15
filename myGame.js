@@ -167,11 +167,11 @@ function loadControls(player, sword, dialog) {
 
     // if device is phone add mobile controls
     if (window.matchMedia("(max-width: 1000px)").matches) {
-        addButton("upCtrl", vec2(17, height() - 12), () => movePlayerY(player, -SPEED))
-        addButton("rightCtrl", vec2(23, height() - 6), () => movePlayerX(false, SPEED, -4, player, sword))
-        addButton("downCtrl", vec2(16.3, height()), () => movePlayerY(player, SPEED))
-        addButton("leftCtrl", vec2(10, height() - 6), () => movePlayerX(true, -SPEED, 4, player, sword))
-        addButton("buttonACtrl", vec2(width() - 10, height() -6), () => interact(player, sword))
+        addButton("upCtrl", vec2(25, height() - 28), () => movePlayerY(player, -SPEED))
+        addButton("rightCtrl", vec2(40, height() - 14), () => movePlayerX(false, SPEED, -4, player, sword))
+        addButton("downCtrl", vec2(25, height()), () => movePlayerY(player, SPEED))
+        addButton("leftCtrl", vec2(10, height() - 14), () => movePlayerX(true, -SPEED, 4, player, sword))
+        addButton("buttonACtrl", vec2(width() - 10, height() - 14), () => interact(player, sword))
     }
     
 }
@@ -467,9 +467,9 @@ function addButton(i, p, f) {
         origin("bot"),
         opacity(0.5),
         sprite(i),
-        area({ scale: 0.8 }),
+        area({ scale: 0.7 }),
         layer('ui'),
-        scale(0.2),
+        scale(0.4),
 	])
 
     btn.onClick(f);
@@ -482,9 +482,9 @@ function addButton(i, p, f) {
 				wave(0, 255, t + 2),
 				wave(0, 255, t + 4),
 			)
-			btn.scale = vec2(0.25)
+			btn.scale = vec2(0.55)
 		} else {
-			btn.scale = vec2(0.2)
+			btn.scale = vec2(0.4)
 			btn.color = rgb()
 		}
 	})
